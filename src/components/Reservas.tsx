@@ -122,7 +122,7 @@ export default function Reservas() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs uppercase tracking-[0.15em] text-text-secondary mb-2">
                     Fecha
@@ -191,7 +191,7 @@ export default function Reservas() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs uppercase tracking-[0.15em] text-text-secondary mb-2">
                     Nombre completo

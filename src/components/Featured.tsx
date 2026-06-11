@@ -95,7 +95,7 @@ export default function Featured() {
               onClick={() =>
                 setTappedIndex(tappedIndex === index ? null : index)
               }
-              className="group relative overflow-hidden border border-border/40 transition-all duration-500 cursor-default hover:border-gold hover:shadow-lg hover:shadow-gold/5"
+              className="group relative overflow-hidden border border-border/40 transition-all duration-500 cursor-pointer active:border-gold hover:border-gold hover:shadow-lg hover:shadow-gold/5"
             >
               <div className="relative h-48 overflow-hidden">
                 <img
