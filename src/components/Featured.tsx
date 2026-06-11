@@ -57,8 +57,9 @@ export default function Featured() {
 
   return (
     <section className="relative py-24 md:py-32 bg-bg-card overflow-hidden">
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-gold/5 rounded-full blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gold/5 rounded-full blur-3xl" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-gold/[0.03] rounded-full blur-3xl" />
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gold/[0.03] rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-white/[0.02] rounded-full blur-3xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -88,35 +89,35 @@ export default function Featured() {
                 visible: {
                   opacity: 1,
                   y: 0,
-                  transition: { duration: 0.6, ease: "easeOut" },
+                  transition: { duration: 0.6, ease: "easeOut" as const },
                 },
               }}
               onClick={() =>
                 setTappedIndex(tappedIndex === index ? null : index)
               }
-              className={`group relative overflow-hidden border border-border/40 transition-all duration-500 cursor-default ${
-                tappedIndex === index
-                  ? "border-gold"
-                  : "hover:border-gold"
-              }`}
+              className="group relative overflow-hidden border border-border/40 transition-all duration-500 cursor-default hover:border-gold hover:shadow-lg hover:shadow-gold/5"
             >
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={dish.image}
                   alt={dish.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
               </div>
-              <div className="p-6">
-                <span className="font-serif text-5xl text-gold/10 absolute top-4 right-4 select-none">
+              <div className="p-6 relative">
+                <span className="font-serif text-6xl text-gold/[0.06] absolute -top-8 right-4 select-none leading-none">
                   {dish.number}
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-gold/60">
-                  {dish.category}
-                </span>
-                <h3 className="font-serif text-xl text-text-primary mt-1 group-hover:text-gold transition-colors duration-300">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-6 h-px bg-gold/40" />
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-gold/60">
+                    {dish.category}
+                  </span>
+                </div>
+                <h3 className="font-serif text-xl text-text-primary transition-colors duration-300 group-hover:text-gold">
                   {dish.name}
                 </h3>
                 <p className="text-text-secondary text-sm mt-3 leading-relaxed">

@@ -20,21 +20,18 @@ export default function FloatingButtons() {
       href: `tel:${CONSTANTS.phone}`,
       label: "Llamar",
       bg: "bg-gold",
-      hoverBg: "hover:bg-gold-light",
     },
     {
       icon: MessageCircle,
       href: CONSTANTS.whatsappUrl,
       label: "WhatsApp",
       bg: "bg-[#25D366]",
-      hoverBg: "hover:bg-[#20BD5E]",
     },
     {
       icon: ArrowUp,
       onClick: scrollToTop,
       label: "Subir",
       bg: "bg-white/10 backdrop-blur-sm border border-border/50",
-      hoverBg: "hover:bg-white/20",
     },
   ];
 
@@ -45,7 +42,7 @@ export default function FloatingButtons() {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "easeOut" as const }}
           className="fixed bottom-8 right-6 z-40 flex flex-col gap-3"
         >
           {buttons.map((btn) => {
@@ -55,8 +52,9 @@ export default function FloatingButtons() {
                 <motion.button
                   key={btn.label}
                   onClick={btn.onClick}
+                  whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className={`w-12 h-12 flex items-center justify-center text-white ${btn.bg} ${btn.hoverBg} transition-colors duration-300 shadow-lg shadow-black/30`}
+                  className={`w-12 h-12 flex items-center justify-center text-white ${btn.bg} hover:shadow-lg hover:shadow-gold/20 transition-all duration-300 shadow-lg shadow-black/30`}
                   aria-label={btn.label}
                 >
                   <Icon size={20} />
@@ -69,8 +67,9 @@ export default function FloatingButtons() {
                 href={btn.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className={`w-12 h-12 flex items-center justify-center text-white ${btn.bg} ${btn.hoverBg} transition-colors duration-300 shadow-lg shadow-black/30`}
+                className={`w-12 h-12 flex items-center justify-center text-white ${btn.bg} hover:shadow-lg hover:shadow-gold/20 transition-all duration-300 shadow-lg shadow-black/30`}
                 aria-label={btn.label}
               >
                 <Icon size={20} />

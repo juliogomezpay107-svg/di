@@ -44,9 +44,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <a
             href="#"
-            className="font-serif text-2xl md:text-3xl text-gold tracking-wide"
+            className="flex items-center gap-3 group"
           >
-            Dichoso
+            <span className="w-8 h-8 border border-gold flex items-center justify-center font-serif text-gold text-sm transition-transform duration-300 group-hover:scale-110">
+              D
+            </span>
+            <span className="font-serif text-xl md:text-2xl text-gold tracking-wide">
+              Dichoso
+            </span>
           </a>
 
           <div className="hidden lg:flex items-center gap-10">
@@ -54,22 +59,24 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm uppercase tracking-[0.15em] text-text-secondary hover:text-gold transition-colors duration-300"
+                className="relative text-sm uppercase tracking-[0.15em] text-text-secondary hover:text-gold transition-colors duration-300 group"
               >
                 {link.label}
+                <span className="absolute -bottom-1 left-0 right-0 h-px bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </a>
             ))}
             <a
               href="#reservas"
-              className="bg-gold text-[#1C1C1C] px-6 py-3 text-sm uppercase tracking-[0.15em] font-semibold hover:bg-gold-light transition-colors duration-300"
+              className="bg-gold text-[#1C1C1C] px-6 py-3 text-sm uppercase tracking-[0.15em] font-semibold hover:bg-gold-light transition-all duration-300 relative overflow-hidden group"
             >
-              Reservar Mesa
+              <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              <span className="relative z-10">Reservar Mesa</span>
             </a>
           </div>
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden text-text-primary p-2"
+            className="lg:hidden text-text-primary p-2 hover:text-gold transition-colors"
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -92,7 +99,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm uppercase tracking-[0.15em] text-text-secondary hover:text-gold transition-colors duration-300"
+                  className="relative text-sm uppercase tracking-[0.15em] text-text-secondary hover:text-gold transition-colors duration-300"
                 >
                   {link.label}
                 </a>

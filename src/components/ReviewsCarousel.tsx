@@ -41,13 +41,15 @@ export default function ReviewsCarousel() {
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   return (
-    <section className="py-24 md:py-32 bg-bg-card">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+    <section className="relative py-24 md:py-32 bg-bg-card overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/[0.02] rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: "easeOut" as const }}
           className="text-center mb-12"
         >
           <span className="text-gold text-xs uppercase tracking-[0.2em]">
@@ -62,7 +64,7 @@ export default function ReviewsCarousel() {
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {reviews.map((review, index) => (
-                <div key={index} className="flex-[0_0_100%] min-w-0 px-4 md:px-12">
+                <div key={index} className="flex-[0_0_100%] min-w-0 px-4 md:px-16">
                   <div className="text-center max-w-2xl mx-auto">
                     <div className="flex justify-center gap-1 mb-6">
                       {Array.from({ length: review.rating }).map((_, i) => (
@@ -87,29 +89,29 @@ export default function ReviewsCarousel() {
 
           <button
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-bg-card/80 border border-border/40 p-2 text-text-secondary hover:text-gold hover:border-gold/40 transition-all duration-300 hidden md:block"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-bg-card/80 border border-border/40 p-2.5 text-text-secondary hover:text-gold hover:border-gold/40 transition-all duration-300 hidden md:block"
             aria-label="Anterior reseña"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-bg-card/80 border border-border/40 p-2 text-text-secondary hover:text-gold hover:border-gold/40 transition-all duration-300 hidden md:block"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-bg-card/80 border border-border/40 p-2.5 text-text-secondary hover:text-gold hover:border-gold/40 transition-all duration-300 hidden md:block"
             aria-label="Siguiente reseña"
           >
             <ChevronRight size={20} />
           </button>
         </div>
 
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2.5 mt-10">
           {scrollSnaps.map((_, index) => (
             <button
               key={index}
               onClick={() => emblaApi?.scrollTo(index)}
-              className={`transition-all duration-300 ${
+              className={`transition-all duration-300 rounded-full ${
                 index === selectedIndex
                   ? "bg-gold w-8 h-1.5"
-                  : "bg-border w-4 h-1.5 hover:bg-text-muted"
+                  : "bg-border w-1.5 h-1.5 hover:bg-text-muted"
               }`}
               aria-label={`Ir a reseña ${index + 1}`}
             />

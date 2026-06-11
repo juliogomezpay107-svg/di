@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -11,8 +12,15 @@ import Footer from "./components/Footer";
 import FloatingButtons from "./components/FloatingButtons";
 
 export default function App() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <>
+    <div className="relative">
+      <div className="grain-overlay" />
       <Navbar />
       <main>
         <Hero />
@@ -25,7 +33,7 @@ export default function App() {
         <Ubicacion />
       </main>
       <Footer />
-      <FloatingButtons />
-    </>
+      {mounted && <FloatingButtons />}
+    </div>
   );
 }

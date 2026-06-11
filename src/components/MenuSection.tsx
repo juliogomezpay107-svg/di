@@ -8,8 +8,10 @@ export default function MenuSection() {
   const activeCategory = menuData.find((c) => c.id === activeTab)!;
 
   return (
-    <section id="carta" className="py-24 md:py-32 bg-bg">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+    <section id="carta" className="relative py-24 md:py-32 bg-bg overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="text-gold text-xs uppercase tracking-[0.2em]">
             Nuestra Propuesta
@@ -23,7 +25,7 @@ export default function MenuSection() {
               <button
                 key={category.id}
                 onClick={() => setActiveTab(category.id)}
-                className={`relative px-5 py-3 text-sm uppercase tracking-[0.15em] transition-colors duration-300 ${
+                className={`relative px-4 md:px-5 py-3 text-sm uppercase tracking-[0.15em] transition-colors duration-300 ${
                   activeTab === category.id
                     ? "text-gold"
                     : "text-text-muted hover:text-text-secondary"
@@ -48,8 +50,8 @@ export default function MenuSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="space-y-8"
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
+            className="space-y-6"
           >
             {activeCategory.items.map((item, index) => (
               <motion.div
@@ -57,10 +59,10 @@ export default function MenuSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.08 }}
-                className="group border-b border-border/40 pb-6"
+                className="group border-b border-border/30 pb-6 hover:border-gold/20 transition-colors duration-300"
               >
                 <div className="flex justify-between items-baseline gap-4">
-                  <h3 className="font-serif text-xl md:text-2xl text-text-primary group-hover:text-gold transition-colors duration-300">
+                  <h3 className="font-serif text-xl md:text-2xl text-text-primary transition-colors duration-300 group-hover:text-gold">
                     {item.name}
                   </h3>
                   <span className="font-serif text-gold text-lg whitespace-nowrap">
@@ -75,7 +77,7 @@ export default function MenuSection() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] uppercase tracking-[0.15em] text-gold/70 border border-gold/20 px-2.5 py-1"
+                        className="text-[10px] uppercase tracking-[0.15em] text-gold/60 border border-gold/20 px-2.5 py-1"
                       >
                         {tag}
                       </span>

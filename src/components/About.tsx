@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   UtensilsCrossed,
@@ -22,7 +21,10 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="nosotros" className="bg-[#252525] py-24 md:py-32">
+    <section id="nosotros" className="relative bg-[#252525] py-24 md:py-32 overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
@@ -67,19 +69,20 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden group">
               <img
                 src="https://res.cloudinary.com/dmuxgamms/image/upload/v1779289197/Screenshot_24_qkmz4s.png"
                 alt="Interior del restaurante Dichoso en Mairena del Aljarafe"
-                className="w-full h-[500px] md:h-[600px] object-cover"
+                className="w-full h-[500px] md:h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <span className="absolute bottom-4 left-4 text-xs uppercase tracking-[0.15em] text-white/70">
-                Dichoso · Mairena del Aljarafe
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+              <span className="absolute bottom-4 left-4 text-[10px] uppercase tracking-[0.2em] text-white/70">
+                Dichoso &middot; Mairena del Aljarafe
               </span>
             </div>
           </motion.div>
@@ -88,21 +91,23 @@ export default function About() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.4 }}
           className="grid grid-cols-2 md:grid-cols-5 gap-6 mt-20"
         >
           {highlights.map((item) => {
             const Icon = item.icon;
             return (
-              <div
+              <motion.div
                 key={item.label}
-                className="text-center p-6 border border-border/50 hover:border-gold/30 transition-colors duration-300"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.2 }}
+                className="text-center p-6 border border-border/50 hover:border-gold/40 transition-all duration-300 group cursor-default"
               >
-                <Icon size={24} className="text-gold mx-auto mb-3" />
+                <Icon size={24} className="text-gold mx-auto mb-3 transition-transform duration-300 group-hover:scale-110" />
                 <span className="text-xs uppercase tracking-[0.15em] text-text-secondary">
                   {item.label}
                 </span>
-              </div>
+              </motion.div>
             );
           })}
         </motion.div>
